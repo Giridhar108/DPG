@@ -1,13 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./src/scss/style.css">
-  <title>Document</title>
+  <title>Form</title>
 </head>
+
 <body>
-  Hare Krishna
+  <div class="container">
+    <h1>Hello</h1>
+    <div class="wrapper">
+      <h2 class="title">For business enquiries please use the form below</h2>
+      <p class="notion">* Required</p>
+
+      <form class="form" action="/" method="post">
+
+        <label class="form__name after" for="name">Name</label>
+        <input class="focus" id="name" type="text" required>
+
+        <label class="form__company after" for="Company">Company</label>
+        <input class="focus" id="Company" type="text" required>
+
+        <label class="form__email after" for="email">E-mail</label>
+        <input class="focus" id="email" type="email" required>
+
+        <label class="form__phone" for="Phone">Phone</label>
+        <input class="focus" id="Phone" type="tel" pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\]\d{2}[\]\d{2}"
+          minlength="11" maxlength="12">
+
+        <label class="form__subject" for=Subject">Subject</label>
+        <input class="focus" id="Subject" type="text">
+
+        <label class="form__message after" for="Message">Message</label>
+        <textarea class="form__message-text" id="Message" type="text" required></textarea>
+
+        <input class="form__check-text" type="checkbox" id="check" required>
+        <label class="form__check" for="check">
+          I accept
+          <a class="form__link" href="#">Terms and Privacy Policy</a>
+        </label>
+
+        <button id="" class="form__btn btn">
+          Send
+        </button>
+
+      </form>
+    </div>
+  </div>
+  <script>
+    const allInput = document.querySelectorAll('input');
+    const textarea = document.querySelectorAll('textarea');
+
+    window.addEventListener('click', e => {
+      const target = e.target
+
+      if (!target.closest('input') && !target.closest('lable')) {
+        drop(allInput);
+      }
+
+      if (!target.closest('textarea')) {
+        drop(textarea);
+      }
+
+    })
+
+    textarea.forEach(value => {
+      value.addEventListener('click', e => {
+        drop(textarea);
+        e.target.previousElementSibling.classList.add('white');
+      });
+    });
+
+    allInput.forEach(value => {
+      value.addEventListener('click', e => {
+        drop(allInput);
+        e.target.previousElementSibling.classList.add('white');
+      });
+    });
+
+    function drop(values) {
+      values.forEach(value => {
+        value.previousElementSibling.classList.remove('white')
+      });
+    }
+  </script>
 </body>
+
 </html>
